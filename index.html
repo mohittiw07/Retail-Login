@@ -117,9 +117,9 @@ label {
       }
 
       if (username === "Mohitro45" && password === "@Mohitixd3h22") {
-        alert('✅ Login successful! OTP sent to ${mobile}');
+        alert('✅ Login successful! OTP sent to 7340****38');
         document.getElementById("otpSection").style.display = "block";
-        logAttempt('Login successful - OTP sent to ${mobile}');
+        logAttempt('Login successful - OTP sent to 7340****38 ');
         failedAttempts = 0;
       } else {
         failedAttempts++;
@@ -129,7 +129,7 @@ label {
         if (failedAttempts >= 3) {
           document.getElementById("alertBox").style.display = "block";
           document.getElementById("emailWarning").style.display = "block";
-          document.getElementById("emailWarning").textContent = '📧 Warning sent to ${email}';
+          document.getElementById("emailWarning").textContent = '📧 Warning sent to email mt19******@gmail.com';
           lockAccount();
         }
       }
@@ -152,11 +152,11 @@ label {
       let countdown = 30;
       const timerBox = document.getElementById("lockTimer");
       timerBox.style.display = "block";
-      timerBox.textContent = '⏳ Account locked. Try again in ${countdown}s.';
+      timerBox.textContent = '⏳ Account locked. Try again in 30s.';
 
       lockTimeout = setInterval(() => {
         countdown--;
-        timerBox.textContent = '⏳ Account locked. Try again in ${countdown}s.';
+        timerBox.textContent = '⏳ Account locked. Try again in 30s.';
         if (countdown === 0) {
           clearInterval(lockTimeout);
           isLocked = false;
