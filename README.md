@@ -34,14 +34,7 @@ This project demonstrates common cybersecurity practices like login attempt trac
 
 ---
 
-## 📂 Project Structure
 
-retail-login-demo/ ├── index.html        
-# Main HTML file ├── style.css        
-# Styling (optional, if not inline) ├── script.js         
-# JavaScript logic (optional, if not inline) ├── .gitignore       
-# Git ignore rules for clean repo ├── README.md   
----
 
 ## 🔐 Security Note
 
