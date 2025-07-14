@@ -45,15 +45,15 @@ retail-login-demo/ ├── index.html
 
 ## 🔐 Security Note
 
--This is a frontend-only simulation. In real-world usage, the following would be needed:
+- This is a frontend-only simulation. In real-world usage, the following would be needed:
 
--Backend server (Node.js, Django, etc.)
+- Backend server (Node.js, Django, etc.)
 
--Real OTP via Twilio, Firebase, etc.
+- Real OTP via Twilio, Firebase, etc.
 
--Email service (e.g., Nodemailer, SendGrid)
+- Email service (e.g., Nodemailer, SendGrid)
 
--Database for user data & logs
+- Database for user data & logs
 
 
 
