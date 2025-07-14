@@ -7,9 +7,9 @@ This project demonstrates common cybersecurity practices like login attempt trac
 
 ## 📸 Demo Preview
 
-![Login UI Screenshot](screenshot.png) <!-- (Optional: Add a screenshot image to your repo) -->
 
-🎥 *[Watch Demo Video](https://youtu.be/46jwXyUuB20?si=r2m1PWkcCjiAHos-)* (replace with YouTube or Drive link)
+
+🎥 *[Watch Demo Video](https://youtu.be/46jwXyUuB20?si=r2m1PWkcCjiAHos-)* 
 
 ---
 
