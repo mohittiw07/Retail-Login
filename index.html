@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Retail Login Security Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }.login-box {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  width: 320px;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.alert, .email-warning, .otp-section, .lock-timer, .log-box {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.alert { background-color: #ffe5e5; color: #a00; }
+.email-warning { background-color: #fff3cd; color: #856404; }
+.otp-section { background-color: #e7f3fe; color: #31708f; }
+.lock-timer { background-color: #f8d7da; color: #721c24; }
+.log-box { background-color: #f1f1f1; color: #333; max-height: 100px; overflow-y: auto; }
+
+label {
+  font-size: 14px;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h3>Retail Login</h3>
+    <input type="text" id="email" value="" placeholder="Enter your email">
+    <input type="text" id="mobile" value="" placeholder="Enter your mobile number">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <label><input type="checkbox" id="captchaCheck"> I'm not a robot</label>
+    <button onclick="login()">Login</button><div id="alertBox" class="alert">⚠ Suspicious activity detected! Account locked.</div>
+<div id="emailWarning" class="email-warning"></div>
+<div id="otpSection" class="otp-section">
+  <input type="text" id="otpInput" placeholder="Enter OTP">
+  <button onclick="verifyOTP()">Verify OTP</button>
+</div>
+<div id="lockTimer" class="lock-timer"></div>
+<div id="logBox" class="log-box"></div>
+
+  </div>  <script>
+    let failedAttempts = 0;
+    let isLocked = false;
+    let lockTimeout;
+    const correctOTP = "456789";
+
+    function logAttempt(message) {
+      const logBox = document.getElementById("logBox");
+      const entry = document.createElement("div");
+      entry.textContent = new Date().toLocaleTimeString() + " - " + message;
+      logBox.appendChild(entry);
+      logBox.style.display = "block";
+    }
+
+    function login() {
+      if (isLocked) return;
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const captchaChecked = document.getElementById("captchaCheck").checked;
+      const email = document.getElementById("email").value;
+      const mobile = document.getElementById("mobile").value;
+
+      if (!captchaChecked) {
+        alert("⚠ Please verify the CAPTCHA.");
+        logAttempt("CAPTCHA not checked.");
+        return;
+      }
+
+      if (!email || !mobile) {
+        alert("📧 Please enter your email and mobile number.");
+        logAttempt("Missing email or mobile.");
+        return;
+      }
+
+      if (username === "Mohitro45" && password === "@Mohitixd3h22") {
+        alert('✅ Login successful! OTP sent to ${mobile}');
+        document.getElementById("otpSection").style.display = "block";
+        logAttempt('Login successful - OTP sent to ${mobile}');
+        failedAttempts = 0;
+      } else {
+        failedAttempts++;
+        alert("❌ Incorrect credentials. Attempt " + failedAttempts);
+        logAttempt("Failed login attempt " + failedAttempts);
+
+        if (failedAttempts >= 3) {
+          document.getElementById("alertBox").style.display = "block";
+          document.getElementById("emailWarning").style.display = "block";
+          document.getElementById("emailWarning").textContent = '📧 Warning sent to ${email}';
+          lockAccount();
+        }
+      }
+    }
+
+    function verifyOTP() {
+      const enteredOTP = document.getElementById("otpInput").value;
+      if (enteredOTP === correctOTP) {
+        alert("🎉 OTP verified. Access granted.");
+        document.getElementById("otpSection").style.display = "none";
+        logAttempt("OTP verified successfully.");
+      } else {
+        alert("❌ Invalid OTP.");
+        logAttempt("Invalid OTP entered.");
+      }
+    }
+
+    function lockAccount() {
+      isLocked = true;
+      let countdown = 30;
+      const timerBox = document.getElementById("lockTimer");
+      timerBox.style.display = "block";
+      timerBox.textContent = '⏳ Account locked. Try again in ${countdown}s.';
+
+      lockTimeout = setInterval(() => {
+        countdown--;
+        timerBox.textContent = '⏳ Account locked. Try again in ${countdown}s.';
+        if (countdown === 0) {
+          clearInterval(lockTimeout);
+          isLocked = false;
+          failedAttempts = 0;
+          document.getElementById("alertBox").style.display = "none";
+          document.getElementById("emailWarning").style.display = "none";
+          timerBox.style.display = "none";
+          logAttempt("Account unlocked after timer.");
+        }
+      }, 1000);
+    }
+  </script></body>
+</html>
