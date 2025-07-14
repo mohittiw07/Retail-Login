@@ -36,4 +36,25 @@ This project demonstrates common cybersecurity practices like login attempt trac
 
 ## 📂 Project Structure
 
-retail-login-demo/ ├── index.html        # Main HTML file ├── style.css         # Styling (optional, if not inline) ├── script.js         # JavaScript logic (optional, if not inline) ├── .gitignore        # Git ignore rules for clean repo ├── README.md         
+retail-login-demo/ ├── index.html        
+# Main HTML file ├── style.css        
+# Styling (optional, if not inline) ├── script.js         
+# JavaScript logic (optional, if not inline) ├── .gitignore       
+# Git ignore rules for clean repo ├── README.md   
+---
+
+## 🔐 Security Note
+
+-This is a frontend-only simulation. In real-world usage, the following would be needed:
+
+-Backend server (Node.js, Django, etc.)
+
+-Real OTP via Twilio, Firebase, etc.
+
+-Email service (e.g., Nodemailer, SendGrid)
+
+-Database for user data & logs
+
+
+
+
